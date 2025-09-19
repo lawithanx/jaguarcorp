@@ -1,0 +1,260 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-dark text-primary antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Professional button styles */
+  .btn-primary {
+    @apply bg-primary text-dark hover:bg-primary/90 px-6 py-3 rounded-md font-medium transition-all duration-200 flex items-center gap-2 justify-center border border-primary/20 hover:border-primary shadow-sm hover:shadow-md;
+  }
+  
+  .btn-secondary {
+    @apply border border-primary/40 text-primary hover:bg-primary/10 hover:border-primary px-6 py-3 rounded-md font-medium transition-all duration-200 flex items-center gap-2 justify-center;
+  }
+  
+  .btn-ghost {
+    @apply text-primary hover:bg-primary/5 hover:text-primary px-6 py-3 rounded-md font-medium transition-all duration-200 flex items-center gap-2 justify-center;
+  }
+  
+  /* Professional card styles */
+  .card {
+    @apply bg-dark-900/60 backdrop-blur-sm border border-primary/15 rounded-lg p-6 transition-all duration-200 hover:border-primary/25 hover:bg-dark-900/80;
+  }
+  
+  .card-professional {
+    @apply bg-dark-900/80 border border-primary/20 rounded-lg p-6 transition-all duration-200 hover:border-primary/30 hover:shadow-lg shadow-black/20;
+  }
+  
+  /* Professional input styles */
+  .input {
+    @apply bg-dark-800/60 border border-primary/20 rounded-md px-4 py-3 text-primary placeholder-primary/40 focus:border-primary/60 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all duration-200;
+  }
+  
+  /* Subtle text emphasis */
+  .text-emphasis {
+    @apply text-primary font-medium;
+  }
+  
+  /* Professional grid pattern */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(rgba(0,255,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,0,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  
+  /* Subtle glow for important elements only */
+  .glow-subtle {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+  }
+  
+  /* Professional animations */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  /* Professional typography */
+  .heading-primary {
+    @apply font-semibold text-primary tracking-tight;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .text-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  /* 3D Transform utilities - refined */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Professional scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-dark-800/50;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/30;
+  }
+}
+
+@layer utilities {
+  /* Professional glass effect */
+  .glass-professional {
+    backdrop-filter: blur(8px);
+    background: rgba(26, 26, 26, 0.85);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+  }
+  
+  /* Status indicators */
+  .status-active {
+    @apply bg-green-500/20 text-green-400 border border-green-500/30;
+  }
+  
+  .status-pending {
+    @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500/30;
+  }
+  
+  .status-error {
+    @apply bg-red-500/20 text-red-400 border border-red-500/30;
+  }
+}
+
+/* Professional animations - subtle and purposeful */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-subtle-float {
+  animation: subtleFloat 8s ease-in-out infinite;
+}
+
+/* Professional hover effects */
+.hover-lift {
+  transition: transform 0.2s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Loading states */
+@keyframes pulse-professional {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.animate-pulse-professional {
+  animation: pulse-professional 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Responsive design - professional breakpoints */
+@media (max-width: 640px) {
+  .card,
+  .card-professional {
+    @apply p-4;
+  }
+  
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .perspective-1000 {
+    perspective: 600px;
+  }
+}
+
+/* Professional focus states */
+.focus-visible:focus-visible {
+  @apply outline-none ring-2 ring-primary/40 ring-offset-2 ring-offset-dark;
+}
+
+/* Professional table styles */
+.table-professional {
+  @apply w-full border-collapse;
+}
+
+.table-professional th {
+  @apply bg-dark-800/50 text-primary/80 text-left px-4 py-3 border-b border-primary/20 font-medium;
+}
+
+.table-professional td {
+  @apply px-4 py-3 border-b border-primary/10 text-primary/90;
+}
+
+.table-professional tr:hover {
+  @apply bg-primary/5;
+}
+
+/* Professional form styling */
+.form-group {
+  @apply space-y-2;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-primary/80;
+}
+
+.form-error {
+  @apply text-red-400 text-sm mt-1;
+}
+
+.form-help {
+  @apply text-primary/60 text-sm mt-1;
+} 

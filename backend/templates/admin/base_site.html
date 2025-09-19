@@ -1,0 +1,292 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}JCorp Administration{% endblock %}
+
+{% block branding %}
+<div id="site-name">
+    <div style="display: flex; align-items: center; gap: 12px; padding: 8px 0;">
+        <div style="
+            width: 32px; 
+            height: 32px; 
+            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%); 
+            border-radius: 8px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            font-size: 14px;
+        ">JC</div>
+        <div>
+            <div style="font-size: 18px; font-weight: bold; color: #00ff00; margin: 0;">JCorp</div>
+            <div style="font-size: 11px; color: #00ff0080; margin: 0; line-height: 1;">Professional Administration</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    /* JCorp Professional Admin Styling */
+    :root {
+        --primary-color: #00ff00;
+        --primary-dark: #00cc00;
+        --dark-bg: #0a0a0a;
+        --dark-surface: #1a1a1a;
+        --dark-border: rgba(0, 255, 0, 0.2);
+    }
+    
+    /* Header Styling */
+    #header {
+        background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%) !important;
+        border-bottom: 1px solid var(--dark-border) !important;
+        color: var(--primary-color) !important;
+    }
+    
+    #branding h1, #branding h1 a:link, #branding h1 a:visited {
+        color: var(--primary-color) !important;
+        font-weight: bold !important;
+    }
+    
+    /* Navigation */
+    #user-tools a:link, #user-tools a:visited {
+        color: var(--primary-color) !important;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+    }
+    
+    #user-tools a:hover, #user-tools a:focus {
+        color: #ffffff !important;
+        border-bottom-color: var(--primary-color) !important;
+    }
+    
+    /* Breadcrumbs */
+    div.breadcrumbs {
+        background: var(--dark-surface) !important;
+        border-bottom: 1px solid var(--dark-border) !important;
+        color: var(--primary-color) !important;
+    }
+    
+    div.breadcrumbs a {
+        color: var(--primary-color) !important;
+        text-decoration: none;
+    }
+    
+    div.breadcrumbs a:hover {
+        color: #ffffff !important;
+        text-decoration: underline;
+    }
+    
+    /* Main Content */
+    #content {
+        background: var(--dark-bg) !important;
+        color: var(--primary-color) !important;
+    }
+    
+    /* Tables */
+    .results {
+        background: var(--dark-surface) !important;
+        border: 1px solid var(--dark-border) !important;
+    }
+    
+    .results th {
+        background: linear-gradient(135deg, var(--dark-surface) 0%, #252525 100%) !important;
+        color: var(--primary-color) !important;
+        border-bottom: 2px solid var(--dark-border) !important;
+        font-weight: 600;
+    }
+    
+    .results td {
+        background: var(--dark-bg) !important;
+        color: var(--primary-color) !important;
+        border-bottom: 1px solid var(--dark-border) !important;
+    }
+    
+    .results tr:nth-child(even) td {
+        background: rgba(0, 255, 0, 0.02) !important;
+    }
+    
+    .results tr:hover td {
+        background: rgba(0, 255, 0, 0.1) !important;
+    }
+    
+    /* Links */
+    a:link, a:visited {
+        color: var(--primary-color) !important;
+        text-decoration: none;
+    }
+    
+    a:hover, a:focus {
+        color: #ffffff !important;
+        text-decoration: underline;
+    }
+    
+    /* Buttons */
+    .button, input[type=submit], input[type=button], .submit-row input, button {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
+        color: #000000 !important;
+        border: none !important;
+        border-radius: 6px !important;
+        padding: 8px 16px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+        cursor: pointer !important;
+    }
+    
+    .button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, button:hover {
+        background: linear-gradient(135deg, #00cc00 0%, #009900 100%) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(0, 255, 0, 0.3) !important;
+    }
+    
+    .button:active, input[type=submit]:active, input[type=button]:active, .submit-row input:active, button:active {
+        transform: translateY(0) !important;
+        box-shadow: 0 2px 6px rgba(0, 255, 0, 0.2) !important;
+    }
+    
+    /* Forms */
+    .form-row {
+        background: var(--dark-surface) !important;
+        border: 1px solid var(--dark-border) !important;
+        border-radius: 8px !important;
+        margin-bottom: 12px !important;
+        padding: 12px !important;
+    }
+    
+    .form-row label {
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+    }
+    
+    input[type="text"], input[type="password"], input[type="email"], input[type="url"], 
+    input[type="number"], input[type="tel"], textarea, select {
+        background: var(--dark-bg) !important;
+        color: var(--primary-color) !important;
+        border: 1px solid var(--dark-border) !important;
+        border-radius: 6px !important;
+        padding: 8px 12px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, 
+    input[type="url"]:focus, input[type="number"]:focus, input[type="tel"]:focus, 
+    textarea:focus, select:focus {
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.2) !important;
+        outline: none !important;
+    }
+    
+    /* Sidebar */
+    #changelist-sidebar {
+        background: var(--dark-surface) !important;
+        border-left: 1px solid var(--dark-border) !important;
+    }
+    
+    #changelist-sidebar h2, #changelist-sidebar h3 {
+        color: var(--primary-color) !important;
+        background: var(--dark-bg) !important;
+        border-bottom: 1px solid var(--dark-border) !important;
+    }
+    
+    /* Messages */
+    .messagelist {
+        margin: 0 0 20px 0 !important;
+    }
+    
+    .messagelist .success {
+        background: rgba(0, 255, 0, 0.1) !important;
+        border: 1px solid var(--primary-color) !important;
+        color: var(--primary-color) !important;
+        border-radius: 6px !important;
+    }
+    
+    .messagelist .error {
+        background: rgba(255, 68, 68, 0.1) !important;
+        border: 1px solid #ff4444 !important;
+        color: #ff4444 !important;
+        border-radius: 6px !important;
+    }
+    
+    .messagelist .warning {
+        background: rgba(255, 193, 7, 0.1) !important;
+        border: 1px solid #ffc107 !important;
+        color: #ffc107 !important;
+        border-radius: 6px !important;
+    }
+    
+    /* Module styling */
+    .module {
+        background: var(--dark-surface) !important;
+        border: 1px solid var(--dark-border) !important;
+        border-radius: 8px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .module h2, .module caption {
+        background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%) !important;
+        color: var(--primary-color) !important;
+        border-bottom: 1px solid var(--dark-border) !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Dashboard */
+    #content-main .module {
+        transition: all 0.3s ease !important;
+    }
+    
+    #content-main .module:hover {
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 4px 20px rgba(0, 255, 0, 0.1) !important;
+    }
+    
+    /* Footer */
+    #footer {
+        background: var(--dark-surface) !important;
+        border-top: 1px solid var(--dark-border) !important;
+        color: rgba(0, 255, 0, 0.6) !important;
+        text-align: center !important;
+        padding: 20px !important;
+        margin-top: 40px !important;
+    }
+    
+    /* Professional Grid Background */
+    body {
+        background: var(--dark-bg) !important;
+        background-image: 
+            linear-gradient(rgba(0,255,0,0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,255,0,0.02) 1px, transparent 1px) !important;
+        background-size: 24px 24px !important;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        #site-name > div {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 4px !important;
+        }
+        
+        #site-name > div > div:first-child {
+            width: 24px !important;
+            height: 24px !important;
+            font-size: 12px !important;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block footer %}
+<div id="footer">
+    <div style="margin-bottom: 8px;">
+        <strong>JCorp Professional Administration</strong>
+    </div>
+    <div style="font-size: 12px; opacity: 0.8;">
+        Secure • Professional • Enterprise-Grade
+    </div>
+    <div style="font-size: 11px; opacity: 0.6; margin-top: 8px;">
+        © {{ current_year }} JCorp by lawithanx. All rights reserved.
+    </div>
+</div>
+{% endblock %} 
