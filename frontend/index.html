@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JCorp - Cybersecurity, Development & Design</title>
+    <meta name="description" content="JCorp by lawithanx - Professional cybersecurity, full-stack development, and graphic design services." />
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="lawithanx" />
+    <meta name="keywords" content="cybersecurity, web development, graphic design, full-stack, react, django, portfolio" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="JCorp - Professional Tech Services" />
+    <meta property="og:description" content="Cybersecurity, Full-stack Development & Graphic Design by lawithanx" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcorp.dev" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="JCorp - Professional Tech Services" />
+    <meta name="twitter:description" content="Cybersecurity, Full-stack Development & Graphic Design" />
+    
+    <style>
+      /* Critical CSS for initial load */
+      body {
+        margin: 0;
+        background-color: #1a1a1a;
+        color: #00ff00;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Loading animation */
+      .loading-spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(0, 255, 0, 0.3);
+        border-radius: 50%;
+        border-top-color: #00ff00;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Fallback loading content -->
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;">
+        <div class="loading-spinner"></div>
+        <p style="margin-top: 1rem; font-family: monospace;">Loading JCorp...</p>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html> 

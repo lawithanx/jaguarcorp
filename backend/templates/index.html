@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JCorp - Professional Technology Solutions for Cybersecurity, Development, and Design. Serving government, healthcare, and legal organizations.">
+    <meta name="keywords" content="cybersecurity, web development, professional design, enterprise solutions, HIPAA compliance, government contracts">
+    <meta name="author" content="JCorp by lawithanx">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="JCorp - Professional Technology Solutions">
+    <meta property="og:description" content="Enterprise-grade cybersecurity, development, and design services for professional organizations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jcorp.dev">
+    <meta property="og:image" content="/static/images/jcorp-og-image.png">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JCorp - Professional Technology Solutions">
+    <meta name="twitter:description" content="Enterprise-grade cybersecurity, development, and design services.">
+    
+    <title>JCorp - Professional Technology Solutions</title>
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    
+    <!-- Corporate Professional Styling -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #00ff00;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Loading Screen - Professional */
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-container.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* JCorp Logo */
+        .jcorp-logo {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #00ff00;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .jcorp-tagline {
+            font-size: 1.2rem;
+            color: #00ff0080;
+            margin-bottom: 2rem;
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        /* Professional Loading Animation */
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(0, 255, 0, 0.1);
+            border-top: 3px solid #00ff00;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: #00ff0080;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        
+        /* Professional Grid Pattern */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0,255,0,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,0,0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* React App Container */
+        #root {
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Corporate Error State */
+        .error-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .error-icon {
+            font-size: 3rem;
+            color: #ff4444;
+            margin-bottom: 1rem;
+        }
+        
+        .error-title {
+            font-size: 1.5rem;
+            color: #00ff00;
+            margin-bottom: 1rem;
+        }
+        
+        .error-message {
+            color: #00ff0080;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+        
+        .retry-button {
+            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+            color: #000;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        /* Professional Responsive Design */
+        @media (max-width: 768px) {
+            .jcorp-logo {
+                font-size: 2.5rem;
+            }
+            
+            .jcorp-tagline {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .loading-spinner {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Professional Grid Background -->
+    <div class="grid-background"></div>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-container">
+        <div class="jcorp-logo">JCorp</div>
+        <div class="jcorp-tagline">Professional Technology Solutions</div>
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading secure environment...</div>
+    </div>
+    
+    <!-- Error State -->
+    <div id="error-screen" class="error-container">
+        <div class="error-icon">⚠️</div>
+        <div class="error-title">Service Temporarily Unavailable</div>
+        <div class="error-message">
+            We're experiencing technical difficulties. Our professional support team has been notified.
+        </div>
+        <button class="retry-button" onclick="window.location.reload()">
+            Retry Connection
+        </button>
+    </div>
+    
+    <!-- React App Root -->
+    <div id="root"></div>
+    
+    <!-- Professional Loading Script -->
+    <script>
+        // Professional loading management
+        let loadingTimeout;
+        let reactLoaded = false;
+        
+        // Hide loading screen when React app loads
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.classList.add('fade-out');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }
+            reactLoaded = true;
+        }
+        
+        // Show error screen if loading takes too long
+        function showErrorScreen() {
+            if (!reactLoaded) {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('error-screen').style.display = 'flex';
+            }
+        }
+        
+        // Set timeout for error fallback (30 seconds)
+        loadingTimeout = setTimeout(showErrorScreen, 30000);
+        
+        // Listen for React app ready signal
+        window.addEventListener('load', () => {
+            // Give React a moment to initialize
+            setTimeout(() => {
+                const root = document.getElementById('root');
+                if (root && root.children.length > 0) {
+                    hideLoadingScreen();
+                    clearTimeout(loadingTimeout);
+                }
+            }, 1000);
+        });
+        
+        // Fallback for when React signals it's ready
+        window.hideLoadingScreen = hideLoadingScreen;
+        
+        // Professional error handling
+        window.addEventListener('error', (e) => {
+            console.error('Application error:', e);
+            // Don't show error screen for minor issues
+        });
+        
+        // Professional performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const perfData = performance.getEntriesByType('navigation')[0];
+                    console.log('JCorp Load Performance:', {
+                        loadTime: perfData.loadEventEnd - perfData.fetchStart,
+                        domContentLoaded: perfData.domContentLoadedEventEnd - perfData.fetchStart
+                    });
+                }, 0);
+            });
+        }
+    </script>
+    
+    <!-- React App will be injected here by Vite in development or build process in production -->
+    {% if settings.DEBUG %}
+    <script type="module" src="http://localhost:3000/@vite/client"></script>
+    <script type="module" src="http://localhost:3000/src/main.tsx"></script>
+    {% else %}
+    <!-- Production build assets will be injected here -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'dist/assets/index.css' %}">
+    <script type="module" src="{% static 'dist/assets/index.js' %}"></script>
+    {% endif %}
+</body>
+</html> 
