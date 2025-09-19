@@ -2,71 +2,113 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/jaguar-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JCorp - Cybersecurity, Development & Design</title>
-    <meta name="description" content="JCorp by lawithanx - Professional cybersecurity, full-stack development, and graphic design services." />
-    
-    <!-- Preload critical fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Jaguar Corp (JCorp) - Elite Technology Solutions</title>
+    <meta name="description" content="Jaguar Corp (JCorp) - Premier cybersecurity, enterprise development, and technology consulting for military, medical, legal, and financial sectors." />
     
     <!-- SEO Meta Tags -->
     <meta name="robots" content="index, follow" />
-    <meta name="author" content="lawithanx" />
-    <meta name="keywords" content="cybersecurity, web development, graphic design, full-stack, react, django, portfolio" />
+    <meta name="author" content="Jaguar Corp (JCorp)" />
+    <meta name="keywords" content="cybersecurity, enterprise development, military technology, medical software, legal tech, financial systems, blockchain, web3, jaguar corp, jcorp" />
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="JCorp - Professional Tech Services" />
-    <meta property="og:description" content="Cybersecurity, Full-stack Development & Graphic Design by lawithanx" />
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jcorp.dev" />
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="JCorp - Professional Tech Services" />
-    <meta name="twitter:description" content="Cybersecurity, Full-stack Development & Graphic Design" />
-    
+    <meta property="og:url" content="https://jaguarcorp.com/" />
+    <meta property="og:title" content="Jaguar Corp (JCorp) - Elite Technology Solutions" />
+    <meta property="og:description" content="Premier cybersecurity and enterprise development for regulated industries" />
+    <meta property="og:image" content="/jaguar-og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://jaguarcorp.com/" />
+    <meta property="twitter:title" content="Jaguar Corp (JCorp) - Elite Technology Solutions" />
+    <meta property="twitter:description" content="Premier cybersecurity and enterprise development for regulated industries" />
+    <meta property="twitter:image" content="/jaguar-og-image.jpg" />
+
+    <!-- Preconnect to Google Fonts for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
     <style>
-      /* Critical CSS for initial load */
-      body {
-        margin: 0;
-        background-color: #1a1a1a;
+      /* Loading Screen */
+      #app-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
         color: #00ff00;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-          sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        font-family: 'Inter', sans-serif;
       }
-      
-      #root {
-        min-height: 100vh;
+
+      .jaguar-logo {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 24px;
+        animation: pulse 2s infinite;
       }
-      
-      /* Loading animation */
+
+      .loading-text {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        background: linear-gradient(135deg, #00ff00, #00cc00);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .loading-subtext {
+        font-size: 14px;
+        color: #00ff0080;
+        margin-bottom: 32px;
+      }
+
       .loading-spinner {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 3px solid rgba(0, 255, 0, 0.3);
+        width: 40px;
+        height: 40px;
+        border: 3px solid #00ff0020;
+        border-top: 3px solid #00ff00;
         border-radius: 50%;
-        border-top-color: #00ff00;
-        animation: spin 1s ease-in-out infinite;
+        animation: spin 1s linear infinite;
       }
-      
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.05); }
+      }
+
       @keyframes spin {
-        to { transform: rotate(360deg); }
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
     </style>
   </head>
   <body>
     <div id="root">
-      <!-- Fallback loading content -->
-      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;">
+      <!-- Loading fallback -->
+      <div id="app-loading">
+        <!-- Jaguar Logo SVG -->
+        <svg class="jaguar-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 10C30 10 15 25 15 45C15 65 30 80 50 80C70 80 85 65 85 45C85 25 70 10 50 10Z" fill="#00ff00" opacity="0.1"/>
+          <path d="M35 35C35 30 38 25 45 25C52 25 55 30 55 35C55 40 52 45 45 45C38 45 35 40 35 35Z" fill="#00ff00"/>
+          <path d="M65 35C65 30 62 25 55 25C48 25 45 30 45 35C45 40 48 45 55 45C62 45 65 40 65 35Z" fill="#00ff00"/>
+          <path d="M30 50C30 45 35 40 45 45C50 47 55 47 60 45C70 40 75 45 75 50C75 60 65 70 50 70C35 70 30 60 30 50Z" fill="#00ff00"/>
+          <circle cx="35" cy="30" r="3" fill="#00ff00"/>
+          <circle cx="65" cy="30" r="3" fill="#00ff00"/>
+        </svg>
+        
+        <div class="loading-text">JAGUAR CORP</div>
+        <div class="loading-subtext">Elite Technology Solutions</div>
         <div class="loading-spinner"></div>
-        <p style="margin-top: 1rem; font-family: monospace;">Loading JCorp...</p>
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>

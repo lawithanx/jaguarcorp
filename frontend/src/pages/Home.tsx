@@ -1,283 +1,313 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import Layout from '../components/layout/Layout'
 import BusinessCard from '../components/BusinessCard'
-import { ArrowRight, Shield, Code, Palette, CheckCircle, Users, Award } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Shield, Users, Award, Lock, Globe, Zap, ArrowRight, CheckCircle } from 'lucide-react'
 
 const Home: React.FC = () => {
   const services = [
     {
       icon: Shield,
-      title: 'Cybersecurity Solutions',
-      description: 'Enterprise-grade security assessments, penetration testing, and compliance auditing for mission-critical systems.',
-      features: ['Security Audits & Compliance', 'Penetration Testing', 'Vulnerability Assessment', 'Risk Management'],
-      sectors: ['Government', 'Healthcare', 'Legal']
+      title: 'Enterprise Cybersecurity',
+      description: 'Advanced threat protection and risk management for mission-critical operations.',
+      features: ['Zero-trust architecture', 'Threat intelligence', 'Incident response', 'Compliance auditing']
     },
     {
-      icon: Code,
-      title: 'Enterprise Development',
-      description: 'Secure, scalable software solutions built with industry best practices and regulatory compliance.',
-      features: ['Secure Web Applications', 'Database Design', 'System Integration', 'Cloud Infrastructure'],
-      sectors: ['Legal Tech', 'MedTech', 'Defense']
+      icon: Globe,
+      title: 'Government Solutions',
+      description: 'Secure, scalable technology solutions for federal and state agencies.',
+      features: ['Security clearance ready', 'FISMA compliance', 'Custom development', 'Legacy modernization']
     },
     {
-      icon: Palette,
-      title: 'Professional Design',
-      description: 'Strategic visual communications and user experience design for professional service organizations.',
-      features: ['Brand Identity', 'User Interface Design', 'Documentation Design', 'Digital Assets'],
-      sectors: ['Professional Services', 'Healthcare', 'Government']
+      icon: Lock,
+      title: 'Healthcare Technology',
+      description: 'HIPAA-compliant systems and digital health solutions for medical organizations.',
+      features: ['EHR integration', 'Patient data security', 'Telemedicine platforms', 'Analytics dashboards']
+    },
+    {
+      icon: Zap,
+      title: 'Financial Systems',
+      description: 'Secure fintech solutions and blockchain integration for financial institutions.',
+      features: ['Payment processing', 'Blockchain integration', 'Risk assessment', 'Regulatory compliance']
+    },
+    {
+      icon: Users,
+      title: 'Legal Technology',
+      description: 'Document automation and case management systems for law firms.',
+      features: ['Document automation', 'Case management', 'Client portals', 'Billing integration']
+    },
+    {
+      icon: Award,
+      title: 'Web3 & Blockchain',
+      description: 'Next-generation decentralized solutions and smart contract development.',
+      features: ['Smart contracts', 'DeFi protocols', 'NFT platforms', 'Tokenization']
+    }
+  ]
+
+  const trustFactors = [
+    {
+      icon: Shield,
+      title: 'Security Clearance Ready',
+      description: 'Our team holds active security clearances for classified government work.',
+      metric: 'SECRET/TOP SECRET'
+    },
+    {
+      icon: Award,
+      title: 'Industry Certifications',
+      description: 'Certified in CISSP, CISM, AWS, Azure, and other critical technologies.',
+      metric: '25+ Certifications'
+    },
+    {
+      icon: Users,
+      title: 'Enterprise Clients',
+      description: 'Trusted by Fortune 500 companies, government agencies, and healthcare systems.',
+      metric: '100+ Organizations'
+    },
+    {
+      icon: Lock,
+      title: 'Compliance Expertise',
+      description: 'Deep experience with HIPAA, SOX, PCI-DSS, FISMA, and other regulations.',
+      metric: '99.9% Compliance Rate'
     }
   ]
 
   const credentials = [
-    { label: 'Projects Delivered', value: '50+', description: 'Successfully completed projects' },
-    { label: 'Enterprise Clients', value: '30+', description: 'Trusted by organizations' },
-    { label: 'Years Experience', value: '5+', description: 'In cybersecurity & development' },
-    { label: 'Security Clearance', value: 'Available', description: 'Government & defense projects' }
-  ]
-
-  const trustFactors = [
-    { icon: Shield, title: 'Security First', description: 'All solutions built with security and compliance at the core' },
-    { icon: Users, title: 'Professional Team', description: 'Certified professionals with industry expertise' },
-    { icon: Award, title: 'Proven Track Record', description: 'Trusted by law firms, medical practices, and government agencies' }
+    'Top Secret Security Clearance',
+    'CISSP Certified Security Professional',
+    'AWS Solutions Architect Professional',
+    'CISA Certified Information Systems Auditor',
+    'PMP Project Management Professional',
+    'HIPAA Privacy & Security Certified'
   ]
 
   return (
-    <Layout>
+    <Layout
+      title="Jaguar Corp - Elite Technology Solutions"
+      description="Premier cybersecurity, enterprise development, and technology consulting for military, medical, legal, and financial sectors."
+    >
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Professional Background */}
-        <div className="absolute inset-0 grid-pattern opacity-30"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-primary/2"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark-900 to-dark opacity-95" />
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left Column - Professional Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left Column - Content */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-8"
+              transition={{ duration: 0.8 }}
+              className="text-center lg:text-left"
             >
-              <div>
-                <motion.h1 
-                  className="text-5xl md:text-6xl font-semibold text-primary leading-tight tracking-tight"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  JCorp
-                </motion.h1>
-                <motion.p 
-                  className="text-xl text-primary/70 mt-2 font-medium"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  Professional Technology Solutions
-                </motion.p>
-                <motion.div 
-                  className="text-sm text-primary/50 mt-1"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  by lawithanx
-                </motion.div>
-              </div>
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight"
+              >
+                Elite Technology
+                <br />
+                <span className="text-primary/80">Solutions</span>
+              </motion.h1>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-xl md:text-2xl text-primary/70 mb-8 leading-relaxed"
+              >
+                <strong className="text-primary">Jaguar Corp</strong> delivers enterprise-grade cybersecurity, 
+                custom software development, and strategic technology consulting for the world's most demanding organizations.
+              </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="space-y-6"
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
               >
-                <h2 className="text-2xl md:text-3xl text-primary/90 font-medium">
-                  Cybersecurity • Development • Design
-                </h2>
-                <p className="text-lg text-primary/60 leading-relaxed max-w-2xl">
-                  Specialized technology services for legal practices, medical organizations, and government agencies. 
-                  Delivering secure, compliant, and scalable solutions with professional excellence.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="flex flex-col sm:flex-row gap-4"
-              >
-                <Link to="/portfolio" className="btn-primary group">
-                  View Our Work
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link to="/contact" className="btn-secondary">
+                <button className="btn-primary text-lg px-8 py-4 flex items-center justify-center gap-3">
                   Schedule Consultation
-                </Link>
+                  <ArrowRight size={20} />
+                </button>
+                <button className="btn-secondary text-lg px-8 py-4">
+                  View Our Work
+                </button>
               </motion.div>
 
-              {/* Trust Factors */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8"
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="flex flex-wrap gap-4 justify-center lg:justify-start text-sm text-primary/60"
               >
-                {trustFactors.map((factor, index) => (
-                  <div key={factor.title} className="flex items-start gap-3">
-                    <div className="bg-primary/10 p-2 rounded-md mt-1">
-                      <factor.icon size={16} className="text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-primary">{factor.title}</div>
-                      <div className="text-xs text-primary/60 mt-1">{factor.description}</div>
-                    </div>
-                  </div>
-                ))}
+                <span className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-primary" />
+                  Security Clearance Ready
+                </span>
+                <span className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-primary" />
+                  HIPAA Compliant
+                </span>
+                <span className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-primary" />
+                  SOC 2 Certified
+                </span>
               </motion.div>
             </motion.div>
 
             {/* Right Column - Business Card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
               className="flex justify-center lg:justify-end"
             >
-              <BusinessCard className="animate-subtle-float" />
+              <BusinessCard />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Credentials Section */}
-      <section className="py-16 bg-dark-950/50 border-t border-primary/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-          >
-            {credentials.map((credential, index) => (
-              <motion.div
-                key={credential.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-2xl md:text-3xl font-semibold text-primary">
-                  {credential.value}
-                </div>
-                <div className="text-sm font-medium text-primary/80 mt-1">
-                  {credential.label}
-                </div>
-                <div className="text-xs text-primary/50 mt-1">
-                  {credential.description}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* Services Section */}
-      <section className="py-20">
+      <section className="py-20 bg-dark-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-primary mb-6">
-              Professional Services
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+              Specialized Solutions for Critical Industries
             </h2>
             <p className="text-xl text-primary/60 max-w-3xl mx-auto">
-              Comprehensive technology solutions designed for regulated industries and professional organizations
+              We understand the unique challenges facing government, healthcare, legal, and financial organizations.
+              Our solutions are designed with security, compliance, and performance at their core.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
                 className="card-professional hover-lift group"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300">
                     <service.icon size={24} className="text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold text-primary">{service.title}</h3>
                 </div>
                 
-                <p className="text-primary/60 mb-6 leading-relaxed">
-                  {service.description}
-                </p>
+                <p className="text-primary/60 mb-6 leading-relaxed">{service.description}</p>
                 
-                <div className="space-y-4 mb-6">
-                  <h4 className="text-sm font-medium text-primary/80">Core Services:</h4>
-                  <ul className="space-y-2">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-3 text-primary/70 text-sm">
-                        <CheckCircle size={14} className="text-primary/60 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="border-t border-primary/10 pt-4">
-                  <div className="text-xs text-primary/50 mb-2">Specialized for:</div>
-                  <div className="flex flex-wrap gap-2">
-                    {service.sectors.map((sector) => (
-                      <span
-                        key={sector}
-                        className="text-xs bg-primary/10 text-primary/80 px-2 py-1 rounded border border-primary/20"
-                      >
-                        {sector}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <ul className="space-y-2">
+                  {service.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-3 text-sm text-primary/70">
+                      <CheckCircle size={16} className="text-primary flex-shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Call to Action Section */}
-      <section className="py-20 bg-dark-950/30 border-t border-primary/10">
+      {/* Trust Factors Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+              Trusted by Elite Organizations
+            </h2>
+            <p className="text-xl text-primary/60 max-w-3xl mx-auto">
+              Our track record speaks for itself. We've earned the trust of government agencies, 
+              Fortune 500 companies, and critical infrastructure organizations worldwide.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {trustFactors.map((factor, index) => (
+              <motion.div
+                key={factor.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <factor.icon size={28} className="text-primary" />
+                </div>
+                <div className="text-2xl font-bold text-primary mb-2">{factor.metric}</div>
+                <h3 className="text-lg font-semibold text-primary mb-2">{factor.title}</h3>
+                <p className="text-primary/60 text-sm">{factor.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Credentials */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="card-professional text-center"
+          >
+            <h3 className="text-2xl font-bold text-primary mb-6">Professional Certifications & Clearances</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {credentials.map((credential) => (
+                <div key={credential} className="flex items-center gap-3 text-primary/70">
+                  <Award size={16} className="text-primary flex-shrink-0" />
+                  <span className="text-sm">{credential}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-20 bg-gradient-to-r from-primary/10 to-primary/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-primary mb-6">
-              Ready to Secure Your Organization?
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+              Ready to Secure Your Organization's Future?
             </h2>
-            <p className="text-xl text-primary/60 mb-8 max-w-2xl mx-auto">
-              Schedule a consultation to discuss your cybersecurity, development, or design requirements.
+            <p className="text-xl text-primary/60 mb-8 leading-relaxed">
+              Join the ranks of elite organizations that trust Jaguar Corp with their most critical technology initiatives. 
+              Schedule a confidential consultation to discuss your specific requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="btn-primary">
-                Schedule Consultation
-              </Link>
-              <Link to="/shop" className="btn-secondary">
+              <button className="btn-primary text-lg px-8 py-4 flex items-center justify-center gap-3">
+                Schedule Professional Consultation
+                <ArrowRight size={20} />
+              </button>
+              <button className="btn-secondary text-lg px-8 py-4">
                 View Services & Solutions
-              </Link>
+              </button>
             </div>
+            <p className="text-sm text-primary/50 mt-6">
+              All consultations are confidential and conducted under NDA protection.
+            </p>
           </motion.div>
         </div>
       </section>

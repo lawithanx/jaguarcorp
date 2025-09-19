@@ -1,142 +1,102 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import axios from 'axios'
-import toast from 'react-hot-toast'
 
 interface User {
   id: number
   email: string
   first_name: string
   last_name: string
-  full_name: string
-  user_type: 'general' | 'law' | 'medical' | 'financial' | 'admin'
-  is_verified: boolean
+  user_type: string
+  is_active: boolean
 }
 
 interface AuthContextType {
   user: User | null
-  token: string | null
-  loading: boolean
-  login: (email: string, password: string) => Promise<boolean>
-  register: (userData: RegisterData) => Promise<boolean>
+  isAuthenticated: boolean
+  login: (email: string, password: string) => Promise<{ success: boolean; message?: string }>
   logout: () => void
-  refreshUser: () => Promise<void>
+  loading: boolean
 }
 
-interface RegisterData {
-  username: string
-  email: string
-  password: string
-  password_confirm: string
-  first_name: string
-  last_name: string
-  phone?: string
-  user_type: string
+const AuthContext = createContext<AuthContextType | undefined>(undefined)
+
+interface AuthProviderProps {
+  children: ReactNode
 }
 
-const AuthContext = createContext<AuthContextType | null>(null)
-
-// Configure axios defaults
-axios.defaults.baseURL = 'http://localhost:8000'
-axios.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
-  if (token) {
-    config.headers.Authorization = `Token ${token}`
-  }
-  return config
-})
-
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token'))
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    if (token) {
-      refreshUser()
-    } else {
-      setLoading(false)
-    }
-  }, [token])
+  // Configure axios defaults
+  axios.defaults.baseURL = 'http://localhost:8000'
+  axios.defaults.withCredentials = true
 
-  const login = async (email: string, password: string): Promise<boolean> => {
-    setLoading(true)
+  useEffect(() => {
+    checkAuthStatus()
+  }, [])
+
+  const checkAuthStatus = async () => {
     try {
-      const response = await axios.post('/api/auth/login/', { email, password })
-      const { user, token } = response.data
-      
-      setUser(user)
-      setToken(token)
-      localStorage.setItem('token', token)
-      
-      toast.success('Login successful!')
-      return true
-    } catch (error: any) {
-      const message = error.response?.data?.detail || 'Login failed'
-      toast.error(message)
-      return false
+      const token = localStorage.getItem('authToken')
+      if (token) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        const response = await axios.get('/api/auth/user/')
+        setUser(response.data)
+      }
+    } catch (error) {
+      localStorage.removeItem('authToken')
+      delete axios.defaults.headers.common['Authorization']
     } finally {
       setLoading(false)
     }
   }
 
-  const register = async (userData: RegisterData): Promise<boolean> => {
-    setLoading(true)
+  const login = async (email: string, password: string): Promise<{ success: boolean; message?: string }> => {
     try {
-      const response = await axios.post('/api/auth/register/', userData)
-      const { user, token } = response.data
-      
-      setUser(user)
-      setToken(token)
-      localStorage.setItem('token', token)
-      
-      toast.success('Registration successful!')
-      return true
+      const response = await axios.post('/api/auth/login/', {
+        email,
+        password
+      })
+
+      if (response.data.access_token) {
+        localStorage.setItem('authToken', response.data.access_token)
+        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`
+        setUser(response.data.user)
+        return { success: true }
+      }
+
+      return { success: false, message: 'Login failed' }
     } catch (error: any) {
-      const message = error.response?.data?.email?.[0] || 
-                     error.response?.data?.password?.[0] || 
-                     'Registration failed'
-      toast.error(message)
-      return false
-    } finally {
-      setLoading(false)
+      const message = error.response?.data?.message || 'Login failed. Please check your credentials.'
+      return { success: false, message }
     }
   }
 
   const logout = () => {
+    localStorage.removeItem('authToken')
+    delete axios.defaults.headers.common['Authorization']
     setUser(null)
-    setToken(null)
-    localStorage.removeItem('token')
-    toast.success('Logged out successfully')
-  }
-
-  const refreshUser = async () => {
-    try {
-      const response = await axios.get('/api/auth/user/')
-      setUser(response.data)
-    } catch (error) {
-      // Token is invalid, clear it
-      logout()
-    } finally {
-      setLoading(false)
-    }
   }
 
   const value: AuthContextType = {
     user,
-    token,
-    loading,
+    isAuthenticated: !!user,
     login,
-    register,
     logout,
-    refreshUser,
+    loading
   }
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
-export const useAuth = (): AuthContextType => {
+export const useAuth = () => {
   const context = useContext(AuthContext)
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider')
   }
   return context
